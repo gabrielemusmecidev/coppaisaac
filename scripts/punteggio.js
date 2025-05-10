@@ -63,7 +63,15 @@ function apriTempo(){
     document.querySelectorAll('.sezione').forEach(div => div.style.display='none');
     document.getElementById('menu-selezione').style.display = 'none';
     document.getElementById('bottone-indietro').style.display = 'block';
-    document.getElementById('menu-tempo').style.display = 'block';
+    document.getElementById('menu-tempo').style.zIndex = 1;
+    document.getElementById('menu-tempo').style.left = '42%';
+    document.getElementById('menu-tempo').style.display='block';
+    var tungtungtungsaur = document.getElementById('time-picker');
+    console.log("font: ", tungtungtungsaur.style.fontSize);
+    console.log("padding: ", tungtungtungsaur.style.padding);
+
+
+
 }
 
 function apriStanza(){
@@ -639,7 +647,9 @@ function calcolaPunteggio(){
     }
 }
 
-document.addEventListener('DOMContentLoaded', () => {
+document.addEventListener('DOMContentLoaded', () => {   
+// Mostra temporaneamente per inizializzare correttamente
+
     const boss = new Choices('#select-boss', {
         removeItemButton: true,
         choices: [
@@ -1284,3 +1294,4 @@ document.addEventListener('DOMContentLoaded', () => {
         searchEnabled: false
     });
 });
+

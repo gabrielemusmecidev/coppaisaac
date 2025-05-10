@@ -8,7 +8,7 @@
 
 body{
     background-image: url("assets/sfondi/dark.png");
-    background-size:auto;
+    background-size:cover;
     background-repeat: no-repeat; /* Change to no-repeat for better appearance */
     height: 100vh;
     margin: 0;
@@ -251,12 +251,12 @@ body > .top-left-button {
 
 /*MENU SELEZIONE TEMPO*/
 .menu-tempo {
-    display: none; /* Rimettere dipaly: none; quando finito di settarlo */
-    justify-content: center;
-    gap: 20px;
-    max-width: 800px;
-    margin: 0 auto;
-    top: 40%;
-    height: auto;
-    width: 40%;
+    display: block; /* Rimettere dipaly: none; quando finito di settarlo */
+    position: absolute;
+    z-index: -1;
+    left: 53%;
+}
+.html-duration-picker {
+    font-size: 20px;
+    padding: 8px 12px;
 }
