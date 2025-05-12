@@ -11,4 +11,5 @@ Sito progettato con l'idea di uno strumento veloce per inserire dei parametri re
   -Implementare la scrittura su DB con SQL <br>
   -Aggiungere possibilità di ridurre contatori <br>
   -Sistemare menu partita sostituendo il picker con un radio con immagini <br>
+  -Sistemare movimento bottoni "Indietro"
   
