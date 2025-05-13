@@ -1,3 +1,5 @@
+
+//Struttura personaggio-punteggio
 const personaggi = [
     ["isaac", 0.88],
     ["magdalene", 0.99],
@@ -18,6 +20,7 @@ const personaggi = [
     ["jacobesau", 1.40]
 ];
 
+//Struttura boss-punteggio
 const completion = [
     ["piede", 500],
     ["cuoremamma",750],
@@ -37,14 +40,22 @@ const completion = [
     ["greed", 9999]
 ];
 
-
+//Funzione menu Boss
 function apriBoss(){
+    //Nasconde tutte le sezioni
     document.querySelectorAll('.sezione').forEach(div => div.style.display='none');
+
+    //Nasconde il menu principale
     document.getElementById('menu-selezione').style.display = 'none';
+
+    //Mostra il pulsante "Indietro"
     document.getElementById('bottone-indietro').style.display = 'block';
+
+    //Mostra il menu Boss
     document.getElementById('menu-boss').style.display = 'block';
 }
 
+//Funzione menu Partita
 function apriPartita(){
     document.querySelectorAll('.sezione').forEach(div => div.style.display='none');
     document.getElementById('menu-selezione').style.display = 'none';
@@ -52,6 +63,7 @@ function apriPartita(){
     document.getElementById('menu-partita').style.display = 'block';
 }
 
+//Funzione menu Oggetti
 function apriOggetti(){
     document.querySelectorAll('.sezione').forEach(div => div.style.display='none');
     document.getElementById('menu-selezione').style.display = 'none';
@@ -59,33 +71,35 @@ function apriOggetti(){
     document.getElementById('menu-items').style.display = 'block';
 }
 
+//Funzione menu Tempo
 function apriTempo(){
     document.querySelectorAll('.sezione').forEach(div => div.style.display='none');
     document.getElementById('menu-selezione').style.display = 'none';
     document.getElementById('bottone-indietro').style.display = 'block';
+
+    //Applicazione stili per nascondere il Picker, display "none" non lo inizilizzerebbe correttamente
     document.getElementById('menu-tempo').style.zIndex = 1;
-    document.getElementById('menu-tempo').style.left = '42%';
+    document.getElementById('menu-tempo').style.left = '39%';
     document.getElementById('menu-tempo').style.display='block';
-    var tungtungtungsaur = document.getElementById('time-picker');
-    console.log("font: ", tungtungtungsaur.style.fontSize);
-    console.log("padding: ", tungtungtungsaur.style.padding);
-
-
-
 }
 
+//Funzione menu Stanza
 function apriStanza(){
     document.querySelectorAll('.sezione').forEach(div => div.style.display='none');
     document.getElementById('menu-selezione').style.display = 'none';
     document.getElementById('bottone-indietro').style.display = 'block';
+    document.getElementById('menu-stanza').style.display = 'block';
 }
 
+//Funzione menu Morte
 function apriMorte(){
     document.querySelectorAll('.sezione').forEach(div => div.style.display='none');
     document.getElementById('menu-selezione').style.display = 'none';
     document.getElementById('bottone-indietro').style.display = 'block';
+    document.getElementById('menu-morte').style.display = 'block';
 }
 
+//Funzione bottone "Indietro"
 function tornaIndietro() {
     // Nasconde tutte le sezioni
     document.querySelectorAll('.sezione').forEach(div => div.style.display = 'block');
@@ -95,7 +109,11 @@ function tornaIndietro() {
     document.getElementById('bottone-indietro').style.display = 'none';
   }
 
+
+//Funzione di calcolo del punteggio
 function calcolaPunteggio(){
+
+    //Associazione item-qualità
     const quality = {
         "skatole": 0,
         "boom": 0,
@@ -647,9 +665,14 @@ function calcolaPunteggio(){
     }
 }
 
-document.addEventListener('DOMContentLoaded', () => {   
-// Mostra temporaneamente per inizializzare correttamente
+document.addEventListener('DOMContentLoaded', () => {
 
+    // Mostra temporaneamente per inizializzare correttamente
+    setTimeout(() => {
+            tornaIndietro();
+       }, 1);
+
+    //Choice boss
     const boss = new Choices('#select-boss', {
         removeItemButton: true,
         choices: [
@@ -720,6 +743,7 @@ document.addEventListener('DOMContentLoaded', () => {
         itemSelectText: "Invio per selezionare"
     });
 
+    //Choice items
     const items = new Choices('#select-items', {
         removeItemButton: true,
         choices: [
@@ -1277,6 +1301,7 @@ document.addEventListener('DOMContentLoaded', () => {
         itemSelectText: "Invio per selezionare"
     });
 
+    //Choice partita
     const partita = new Choices('#select-partita', {
         choices: [
             {
@@ -1293,5 +1318,124 @@ document.addEventListener('DOMContentLoaded', () => {
         addItems: false,
         searchEnabled: false
     });
+
+
+    const buttonLabels = [
+        "Treasure", "Devil Treasure", "Planetarium", "Challenge", "Boss Challenge",
+        "Curse", "Sacrifice", "Secret", "Super Secret", "Ultra Secret", "Library",
+        "Devil", "Angel", "Vault", "Dice", "Bedrooms"
+    ];
+
+    const bossLabels=[
+        "Piede di Mamma", "It Lives", "Satana", "Isaac", "The Lamb", "???", "Mega Satana",
+        "Hush", "Delirium", "Cuore di Mamma", "Mother", "Dogma", "Beast", "Ultra Greed", "Ultra Greedier"
+    ]
+
+    //Determino righe e colonne della tabella
+    const rows = 4;
+    const cols = 4;
+
+    //Inizializzo con 0
+    const counters = Array(rows * cols).fill(0);
+
+    //Creazione tabella
+    const table = document.getElementById("table-stanze");
+
+    //Creazione delle righe
+    for (let r=0; r<rows;r++){
+        const row = document.createElement("tr");
+
+        //Creazione delle colonne
+        for (let c=0; c<cols; c++){
+
+            //L'indice è uguale alla posizione della matrice righe-colonne
+            const index = r* cols+c;
+            const cell = document.createElement("td");
+
+            //assegnazione immagini
+            const img = document.createElement("img");
+            img.src = "/assets/stanze/room"+(index+1)+".png";
+
+            //Testo contatore
+            const countSpan = document.createElement("span");
+            countSpan.id = "counter-" + index;
+            countSpan.textContent = "0";
+
+            // Bottone
+            const btn = document.createElement("button");
+            btn.textContent = buttonLabels[index];
+
+            //Aggiornamento contatore al click
+            btn.addEventListener("click", () => {
+                counters[index]++;
+                countSpan.textContent = counters[index];
+                });
+            
+            //Creazione del div per contenere gli elementi
+            const container = document.createElement("div");
+            container.className = "cell-container";
+
+            //Aggiunta degli elementi al div
+            container.appendChild(img);
+            container.appendChild(btn);
+            container.appendChild(document.createElement("br"));
+            container.appendChild(countSpan);
+
+            //Aggiunta del div alla cella
+            cell.appendChild(container);
+            //Aggiunta della cella alla riga  
+            row.appendChild(cell);
+        }
+        //Aggiunta della riga alla tabella
+        table.appendChild(row);
+    }
+
+    //Stessa della tabella Stanze ma con aggiunta controllo sul numeor di boss per evitare celle vuote
+    const table_morte = document.getElementById("table-morte");
+const totalBosses = bossLabels.length;
+let index = 0;
+
+for (let r = 0; r < rows; r++) {
+    const row = document.createElement("tr");
+
+    for (let c = 0; c < cols; c++) {
+        const cell = document.createElement("td");
+
+        if (index < totalBosses) {
+            const nameLabel = document.createElement("label");
+            nameLabel.className = "name-label";
+            nameLabel.textContent = bossLabels[index];
+
+            const img = document.createElement("img");
+            img.src = "/assets/boss/boss" + (index + 1) + ".png";
+
+            const radio = document.createElement("input");
+            radio.type = "radio";
+            radio.name = "boss";
+            radio.value = index;
+
+
+            radio.addEventListener("change", () => {
+                counters[index]++;
+                countSpan.textContent = counters[index];
+            });
+
+            const container_morte = document.createElement("div");
+            container_morte.className = "cell-container-morte";
+            container_morte.appendChild(nameLabel);
+            container_morte.appendChild(img);
+            container_morte.appendChild(radio);
+            container_morte.appendChild(document.createElement("br"));
+
+            cell.appendChild(container_morte);
+            index++;
+        }
+
+        row.appendChild(cell); // anche se vuota, per mantenere la griglia 4x4
+    }
+
+    table_morte.appendChild(row);
+}
+    
 });
 

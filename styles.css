@@ -254,9 +254,58 @@ body > .top-left-button {
     display: block; /* Rimettere dipaly: none; quando finito di settarlo */
     position: absolute;
     z-index: -1;
-    left: 53%;
+    left: 39%;
+    width: auto;
+    height: auto;
 }
 .html-duration-picker {
     font-size: 20px;
     padding: 8px 12px;
 }
+
+/* MENU SELEZIONE STANZA */
+.menu-stanza {
+    width: auto;
+    height: auto;
+    display: block;
+}
+
+table{
+    border-collapse: collapse;
+    margin: 20px auto;
+}
+td {
+    text-align: center;
+    padding: 10px;
+}
+img {
+    width: 98px;
+    height: 74px;
+    display: block;
+    margin-bottom: 5px;
+}
+
+.cell-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+button, span{
+    font-family: 'IsaacGame', sans-serif;
+    font-size: 20px;
+}
+
+/* MENU SELEZIONE MORTE */
+.cell-container-morte {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  
+  .name-label {
+    text-align: center;
+    margin-bottom: 4px;
+    font-family: 'IsaacGame', sans-serif;
+    font-size: 20px;
+  }

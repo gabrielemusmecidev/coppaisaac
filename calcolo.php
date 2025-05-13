@@ -77,9 +77,20 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             <select id="select-partita">
             </select>
         </div>
-        <div class="menu-tempo" id="menu-tempo" style="width: 218.667px; height: 30px; margin-left: 0px; margin-right: 0px">
+        <div class="menu-tempo" id="menu-tempo" style="left: 30%">
             <input type="text" id="time-picker" class="html-duration-picker" data-hide-seconds="false" data-duration="00:00:00">
         </div>
+        <div class="menu-morte" id="menu-morte">
+            <table id="table-morte">
+            
+            </table>
+        </div>
+        <div class="menu-stanza" id="menu-stanza">
+            <table id="table-stanze">
+
+            </table>
+        </div>
+        
             <script src="https://cdn.jsdelivr.net/npm/choices.js/public/assets/scripts/choices.min.js"></script>
             <script src="https://cdn.jsdelivr.net/npm/html-duration-picker@latest/dist/html-duration-picker.min.js"></script>
             <script src="/scripts/punteggio.js"></script>
